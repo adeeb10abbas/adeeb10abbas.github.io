@@ -34,7 +34,7 @@ a:hover { text-decoration-color: var(--accent); color: var(--accent); }
 .sub { color: var(--muted); margin-bottom: .8rem; }
 .logos { display: grid; grid-template-columns: repeat(3, max-content); gap: 1.1rem 2.4rem; align-items: center; margin: 1.6rem 0 1.8rem; }
 .logos img { display: block; }
-@media (prefers-color-scheme: dark) { .logos { background: #f7f5f0; padding: 1.1rem 1.4rem; border-radius: 8px; } }
+@media (prefers-color-scheme: dark) { .logos img.inv { filter: invert(1) hue-rotate(180deg); } }
 .links { font-size: .9rem; }
 .links a { margin-right: 1.1rem; }
 ol, ul { padding: 0; margin: 0; list-style: none; }
