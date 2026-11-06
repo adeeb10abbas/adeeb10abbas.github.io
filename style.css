@@ -36,7 +36,14 @@ a:hover { text-decoration-color: var(--accent); color: var(--accent); }
 .affil .row { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.9rem; padding: 1rem 0; border-top: 1px solid var(--rule); }
 .affil .lbl { flex: none; width: 6.5rem; font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
 .affil img { display: block; }
-@media (prefers-color-scheme: dark) { .affil img.inv { filter: invert(1) hue-rotate(180deg); } }
+.affil .dark-only { display: none; }
+@media (prefers-color-scheme: dark) {
+  .affil .light-only { display: none; }
+  .affil .dark-only { display: block; }
+  .affil img.inv { filter: invert(1) hue-rotate(180deg); }
+  .affil img.wht { filter: invert(1); }
+  .affil img.sil { filter: brightness(0) invert(1) opacity(.85); }
+}
 .links { font-size: .9rem; }
 .links a { margin-right: 1.1rem; }
 ol, ul { padding: 0; margin: 0; list-style: none; }
