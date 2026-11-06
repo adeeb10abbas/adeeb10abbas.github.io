@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Same goal, different words · Ali-Adeeb Abbas</title>
+<meta name="description" content="If a robot understands a goal, the wording should not matter. Across 864 rollouts of three world-action models, it does.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<main class="post">
+  <p class="crumb sans"><a href="../../">Ali-Adeeb Abbas</a> · <a href="../">Writing</a></p>
+  <h1>Same goal, different words</h1>
+  <p class="date sans">6 November 2026 · A note on <a href="https://arxiv.org/abs/2610.16242">our CoRL 2026 workshop paper</a></p>
+
+  <p>If a robot understands a goal, the wording should not matter. "Put the cube to the left of the bowl" and "the bowl should have the cube on its left" ask for the same world. We wanted to know whether current world-action models treat them that way.</p>
+
+  <figure>
+    <div class="wide"><video src="../../media/same-goal.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+    <figcaption>Same model, same start, same goal. On the left the goal names the object to move first. On the right it names the reference object first. Only the word order changed.</figcaption>
+  </figure>
+
+  <h3>What we did</h3>
+  <p>We took three world-action models (Cosmos3 Nano, Cosmos3 Edge, and FLUX 3 Action), twelve spatial goals across four simulated tabletop scenes, and eight starting states for each. Every goal was written three ways: a direct instruction, a target-first phrasing that names the object to move before the reference, and a reference-first phrasing that names the reference object before the object to move. Everything else was held fixed. That gives 864 rollouts, each one paired with the same rollout under the other two wordings.</p>
+  <p>We scored each rollout on whether the requested arrangement was ever reached, whether it was still true at the end of the episode, and which object actually moved.</p>
+
+  <h3>What we found</h3>
+  <p>Reference-first wording was placed less often than target-first wording in every model, by about twelve points on average.</p>
+  <table class="sans">
+    <tr><th>Model</th><th class="n">Target-first</th><th class="n">Reference-first</th><th class="n">Gap</th></tr>
+    <tr><td>Cosmos3 Nano</td><td class="n">50.8%</td><td class="n">36.2%</td><td class="n">−14.6</td></tr>
+    <tr><td>Cosmos3 Edge</td><td class="n">31.0%</td><td class="n">22.9%</td><td class="n">−8.1</td></tr>
+    <tr><td>FLUX 3 Action</td><td class="n">56.0%</td><td class="n">42.2%</td><td class="n">−13.8</td></tr>
+  </table>
+  <p>The pooled gap is 12.2 points, with a 95% confidence interval of 8.6 to 15.4. That is not a property of one checkpoint. It shows up in all three.</p>
+  <p>The failures are also informative. For the goal "cube behind the bowl", every reference-first rollout that satisfied the relation did so by moving the bowl rather than the cube. The arrangement was right and the behavior was wrong. A success metric that only checks the final relation would have counted those as wins.</p>
+  <p>Placement is also fragile in time. Of 864 rollouts, 383 reached the requested arrangement at some point, and only 191 still had it at the end of the episode. Models knock things over, keep moving after the goal is met, or put the object down and pick it up again.</p>
+  <p>To see where the sensitivity lives, we probed the language backbones on text alone. On reference-first phrasings they sometimes reversed the relation outright, answering "left of" for an instruction whose correct reading is "right of". Adding the image did not reliably help, and in some cases it broke a reading the text encoder had gotten right.</p>
+
+  <h3>What we take from it</h3>
+  <p>These models are not indifferent to wording, and the way they fail is not random. The results argue for three small habits in evaluation: test consistency across equivalent instructions rather than one phrasing, verify that the intended object moved rather than only the final relation, and check whether the arrangement persists to the end of the episode rather than whether it was ever true.</p>
+  <p>The study is limited to simulation, three checkpoints, and tabletop placement. We do not claim a ranking of models, and the exact numbers will move with new checkpoints. The pattern is what we think is worth attention.</p>
+  <p>The <a href="https://adeeb10abbas.github.io/same-goal-different-words/">project site</a> has every result from the paper and an explorer for all 864 rollouts. The evaluation code and scene registry are on <a href="https://github.com/adeeb10abbas/world-action-model-steerability">GitHub</a>. This work was done with Esmaeil Seraj, Behrad Toghi, and Taşkın Padır.</p>
+
+  <footer class="sans"><a href="../">More writing</a></footer>
+</main>
+</body>
+</html>

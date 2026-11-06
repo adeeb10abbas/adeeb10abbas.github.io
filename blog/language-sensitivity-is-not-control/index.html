@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Language sensitivity is not control · Ali-Adeeb Abbas</title>
+<meta name="description" content="A robot policy can change its actions when you change one word and still not do what you asked. Notes from matched left/right interventions across VLAs and world-action models.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<main class="post">
+  <p class="crumb sans"><a href="../../">Ali-Adeeb Abbas</a> · <a href="../">Writing</a></p>
+  <h1>Language sensitivity is not control</h1>
+  <p class="date sans">6 November 2026 · Notes from the <a href="https://github.com/adeeb10abbas/steerable">steerable</a> study</p>
+
+  <p>Changing one word in a robot instruction should change what the robot does. We tested that expectation across vision-language-action models and world-action models with the smallest intervention we could design: from the same starting scene and the same random seed, ask for the same object to be placed either left or right of the same bowl.</p>
+  <p>The result is more nuanced than a success-rate leaderboard. Most models changed their actions when the direction changed, and many moved the object endpoints in the requested order. Reliably completing the task was much less common. A policy can be sensitive to language without being competent, and it can imagine a plausible future without executing it.</p>
+
+  <blockquote>These are checkpoint- and simulator-specific results. The DROID and RoboTwin arenas use different tasks and success predicates, so their numbers are reported separately and never pooled.</blockquote>
+
+  <h3>The experiment</h3>
+  <p>Each matched pair begins from the same physical state. The only change is a static, episode-level command: "Put the Rubik's cube to the left of the bowl" or "Put the Rubik's cube to the right of the bowl." There is no oracle, no subtask coach, no prompt switching. Every valid episode keeps its full simulator video and executed action trace, and failures stay in the record as evidence.</p>
+  <p>We ask three separate questions of each pair. Did the episode satisfy the requested relation? Within the pair, did the right-hand endpoint land to the right of the left-hand endpoint? And did the model execute different actions at all after the language changed? The last two are sensitivity measures. They are not substitutes for success.</p>
+
+  <h3>What the DROID arena showed</h3>
+  <table class="sans">
+    <tr><th>Model</th><th>Type</th><th class="n">Left</th><th class="n">Right</th><th class="n">Aligned pairs</th><th class="n">Distinct actions</th></tr>
+    <tr><td>π0-FAST DROID</td><td>VLA</td><td class="n">1/10</td><td class="n">10/10</td><td class="n">10/10</td><td class="n">10/10</td></tr>
+    <tr><td>GR00T N1.7 DROID</td><td>VLA</td><td class="n">0/3</td><td class="n">0/3</td><td class="n">3/3</td><td class="n">3/3</td></tr>
+    <tr><td>π0.5 DROID</td><td>VLA</td><td class="n">1/3</td><td class="n">3/3</td><td class="n">3/3</td><td class="n">3/3</td></tr>
+    <tr><td>Cosmos3 Edge DROID</td><td>WAM</td><td class="n">3/3</td><td class="n">3/3</td><td class="n">3/3</td><td class="n">3/3</td></tr>
+    <tr><td>Cosmos3 Nano DROID</td><td>WAM</td><td class="n">3/3</td><td class="n">3/3</td><td class="n">3/3</td><td class="n">3/3</td></tr>
+    <tr><td>DreamZero DROID</td><td>WAM</td><td class="n">2/3</td><td class="n">1/3</td><td class="n">3/3</td><td class="n">3/3</td></tr>
+  </table>
+  <p>The pattern is visible without pooling anything. Redirecting the action is common. Completing the task varies sharply by checkpoint and by which direction was asked for. GR00T is the clearest case: all three pairs produced distinct actions with correctly ordered endpoints, and all six episodes failed the task. π0-FAST shows a different limit. It completed nearly every "right" request and almost no "left" request, even though every pair had aligned endpoints.</p>
+  <p>The RoboTwin arena, with a different set of world-action models and a different task, was less reliable overall. The full tables, including the models we had to exclude and why, are in the <a href="https://github.com/adeeb10abbas/steerable/blob/main/docs/VLA_WAM_RESEARCH_BLOG.md">repository write-up</a>.</p>
+
+  <h3>Dreaming is not executing</h3>
+  <p>Some world-action models expose the future they predict. DreamZero's decoder lets us look at what it imagined, and its imagined videos were repeatable and clearly prompt-dependent. In behavior it completed three of six episodes. The narrow conclusion is the honest one: it could generate a direction-conditioned dream, and that did not guarantee a direction-conditioned execution. We keep predictions and rollouts side by side in the gallery and never let one stand in for the other.</p>
+
+  <h3>What this does and does not show</h3>
+  <p>It shows that language can redirect several policies under controlled, matched-state interventions. It also shows why "the actions changed" is not a complete result. Changed actions can still miss the goal.</p>
+  <p>It does not establish a ranking of VLAs against world-action models. The checkpoints, action spaces, horizons, and simulators differ, and the sample sizes are deliberately small. The comparison that holds up is within each checkpoint: left against right, from the same state.</p>
+  <p>The repository keeps the frozen protocol, episode registries, and hash-bound evidence in Git. The raw rollouts, environments, and checkpoints stay on persistent storage.</p>
+
+  <footer class="sans"><a href="../">More writing</a></footer>
+</main>
+</body>
+</html>

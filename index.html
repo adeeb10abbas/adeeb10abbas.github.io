@@ -4,56 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ali-Adeeb Abbas</title>
-<meta name="description" content="Ali-Adeeb Abbas. Senior Applied Scientist, AI Robotics at General Motors. Robot foundation policies and language grounding.">
+<meta name="description" content="Ali-Adeeb Abbas. Senior Applied Scientist, AI Robotics at General Motors. Robot foundation policies and how they understand language.">
 <link rel="icon" href="data:,">
-<style>
-  :root {
-    --bg: #fff;
-    --fg: #111;
-    --muted: #666;
-    --rule: #e4e4e4;
-    --link: #111;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #111; --fg: #e8e8e8; --muted: #9a9a9a; --rule: #2a2a2a; --link: #e8e8e8; }
-  }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    padding: 4rem 1rem 5rem;
-    background: var(--bg);
-    color: var(--fg);
-    font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
-  main { max-width: 640px; margin: 0 auto; }
-  h1 { font-size: 1.35rem; font-weight: 600; margin: 0 0 .25rem; letter-spacing: -.01em; }
-  h2 { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 2.75rem 0 1rem; }
-  p { margin: 0 0 1rem; }
-  a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: var(--rule); }
-  a:hover { text-decoration-color: var(--fg); }
-  .head { display: flex; gap: 1.25rem; align-items: flex-start; }
-  .head img { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; flex: none; margin-top: .15rem; }
-  .sub { color: var(--muted); margin-bottom: 1rem; }
-  .links a { margin-right: 1.1rem; }
-  ol, ul { padding: 0; margin: 0; list-style: none; }
-  li { margin: 0 0 1.4rem; }
-  .pub { display: flex; gap: 1rem; align-items: flex-start; }
-  .pub .media { flex: none; width: 168px; aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden; background: var(--rule); margin-top: .3rem; }
-  .pub .media video, .pub .media img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .pub .t { display: block; }
-  .pub .m { color: var(--muted); font-size: .92rem; }
-  .pub .m a { margin-right: .7rem; }
-  .proj b { font-weight: 600; }
-  .proj span { color: var(--muted); }
-  .ride { width: 100%; aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden; background: var(--rule); margin: 0 0 1rem; }
-  .ride video { display: block; width: 100%; height: 100%; object-fit: cover; }
-  footer { margin-top: 4rem; color: var(--muted); font-size: .85rem; }
-  @media (max-width: 480px) {
-    .pub { flex-direction: column; gap: .5rem; }
-    .pub .media { width: 100%; }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main>
@@ -61,34 +14,37 @@
     <img src="media/ali.jpg" alt="Ali-Adeeb Abbas">
     <div>
       <h1>Ali-Adeeb Abbas</h1>
-      <p class="sub">Senior Applied Scientist, AI Robotics at General Motors.<br>
-      PhD candidate at the <a href="https://robot.neu.edu/">RIVeR Lab</a>, Northeastern University, advised by Taşkın Padır. Boston.</p>
-      <p class="links">
+      <p class="sub">Senior Applied Scientist, AI Robotics, General Motors.<br>
+      PhD candidate, <a href="https://robot.neu.edu/">RIVeR Lab</a>, Northeastern University.</p>
+      <p class="links sans">
         <a href="https://scholar.google.com/citations?user=-PdPv0IAAAAJ">Scholar</a>
         <a href="https://github.com/adeeb10abbas">GitHub</a>
         <a href="https://www.linkedin.com/in/adeeb10abbas/">LinkedIn</a>
+        <a href="blog/">Writing</a>
       </p>
     </div>
   </div>
 
-  <h2>Now</h2>
-  <p>I work on robot foundation policies: vision-language-action models and world-action models. I am interested in how they ground language, how brittle that grounding is, and how to make them behave consistently when the same goal is said in different words.</p>
-  <p>Before GM I was an Applied Scientist at the RAI Institute (formerly the Boston Dynamics AI Institute), and interned at Amazon Robotics and Toyota Research Institute. I studied computer engineering at Drexel.</p>
+  <p>I build and study robot foundation policies at General Motors, and I am finishing a PhD at Northeastern's RIVeR Lab with Taşkın Padır. I live in Boston.</p>
+  <p>Most of my current work starts from a simple question: if you tell a robot the same thing in two different ways, does it do the same thing? Often it does not. I am interested in measuring that gap carefully, in understanding where it comes from inside vision-language-action and world-action models, and in building policies that close it.</p>
+  <p>Before GM I was an Applied Scientist at the RAI Institute, and I interned at Amazon Robotics and Toyota Research Institute. I studied computer engineering at Drexel.</p>
 
-  <h2>Papers</h2>
+  <h2>Research</h2>
   <ol>
     <li class="pub">
       <div class="media"><video src="media/same-goal.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
       <div>
         <span class="t">Same Goal, Different Words: Spatial Instruction Sensitivity in World-Action Models</span>
+        <span class="g">Three world-action models, 864 rollouts, one goal said three ways. Naming the reference object first costs about twelve points of success.</span>
         <span class="m">A.-A. Abbas, E. Seraj, B. Toghi, T. Padır. CoRL 2026 Workshop, <em>Do Robots Need World Models?</em><br>
-        <a href="https://arxiv.org/abs/2610.16242">arXiv</a><a href="https://adeeb10abbas.github.io/same-goal-different-words/">site</a><a href="https://github.com/adeeb10abbas/world-action-model-steerability">code</a></span>
+        <a href="https://arxiv.org/abs/2610.16242">arXiv</a><a href="https://adeeb10abbas.github.io/same-goal-different-words/">site</a><a href="https://github.com/adeeb10abbas/world-action-model-steerability">code</a><a href="blog/same-goal-different-words/">note</a></span>
       </div>
     </li>
     <li class="pub">
       <div class="media"><video src="media/anytask.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
       <div>
         <span class="t">AnyTask: An Automated Task and Data Generation Framework for Advancing Sim-to-Real Policy Learning</span>
+        <span class="g">Foundation models and GPU simulation generate manipulation tasks and data. Policies trained only on that data reach 44% success on real pick-and-place, drawer, and pushing tasks.</span>
         <span class="m">R. Gong, X. Zhang, J. Shang, M. V. Minniti, J. Patel, V. Pepe, R. Yan, A. Gundogdu, I. Kapelyukh, A. Abbas, X. Yan, H. Patel, L. Herlant, K. Schmeckpeper. arXiv, 2025.<br>
         <a href="https://arxiv.org/abs/2512.17853">arXiv</a><a href="https://anytask.rai-inst.com/">site</a></span>
       </div>
@@ -97,6 +53,7 @@
       <div class="media"><video src="media/jacta.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
       <div>
         <span class="t">Jacta: A Versatile Planner for Learning Dexterous and Whole-Body Manipulation</span>
+        <span class="g">A planner that writes its own demonstrations for dexterous and whole-body tasks, so reinforcement learning can learn things it otherwise cannot. The policies transfer to real robots.</span>
         <span class="m">J. Brüdigam, A.-A. Abbas, M. Sorokin, K. Fang, B. Hung, M. Guru, S. Sosnowski, J. Wang, S. Hirche, S. Le Cleac'h. CoRL 2024.<br>
         <a href="https://arxiv.org/abs/2408.01258">arXiv</a><a href="https://jacta-manipulation.github.io/">site</a></span>
       </div>
@@ -105,6 +62,7 @@
       <div class="media"><video src="media/skid.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
       <div>
         <span class="t">A Probabilistic Motion Model for Skid-Steer Wheeled Mobile Robot Navigation on Off-Road Terrains</span>
+        <span class="g">A Gaussian-process motion model that predicts where a skid-steer robot will end up on unseen terrain, more accurately than the kinematic model.</span>
         <span class="m">A. Trivedi, M. Zolotas, A. Abbas, S. Prajapati, S. Bazzi, T. Padır. ICRA 2024.<br>
         <a href="https://doi.org/10.1109/ICRA57147.2024.10611343">doi</a><a href="https://github.com/RIVeR-Lab/multiterrain-gp-model">code</a><a href="https://www.youtube.com/watch?v=_rVy2aBp42c">video</a></span>
       </div>
@@ -113,6 +71,7 @@
       <div class="media"><img src="media/ovsg.jpg" alt=""></div>
       <div>
         <span class="t">Context-Aware Entity Grounding with Open-Vocabulary 3D Scene Graphs</span>
+        <span class="g">Finding the object a person means, using the objects around it, in open-vocabulary 3D scene graphs.</span>
         <span class="m">H. Chang, K. Boyalakuntla, S. Lu, S. Cai, E. Jing, S. Keskar, S. Geng, A. Abbas, L. Zhou, K. Bekris, A. Boularias. CoRL 2023.<br>
         <a href="https://arxiv.org/abs/2309.15940">arXiv</a><a href="https://ovsg-l.github.io/">site</a></span>
       </div>
@@ -120,24 +79,31 @@
     <li class="pub">
       <div>
         <span class="t">Radio Modulation Classification Using Deep Residual Neural Networks</span>
+        <span class="g">A residual network and data augmentation for classifying radio modulation schemes on RadioML.</span>
         <span class="m">A. Abbas, V. Pano, G. Mainland, K. Dandekar. MILCOM 2022.<br>
         <a href="https://doi.org/10.1109/MILCOM55135.2022.10017640">doi</a></span>
       </div>
     </li>
   </ol>
 
-  <h2>Code</h2>
-  <ul>
-    <li class="proj"><a href="https://github.com/adeeb10abbas/steerable"><b>steerable</b></a> <span>language steerability studies for VLAs and world-action models on DROID and RoboTwin.</span></li>
-    <li class="proj"><a href="https://github.com/adeeb10abbas/BitWAM"><b>BitWAM</b></a> <span>1.58-bit vision-language-action policies with BitNet quantization.</span></li>
-    <li class="proj"><a href="https://github.com/adeeb10abbas/ros2-docker-dev"><b>ros2-docker-dev</b></a> <span>ROS 1/2 with GUI support in Docker, no hassle.</span></li>
+  <h2>Writing</h2>
+  <ul class="post-list">
+    <li><span class="d sans">Nov 2026</span><a href="blog/same-goal-different-words/">Same goal, different words</a></li>
+    <li><span class="d sans">Nov 2026</span><a href="blog/language-sensitivity-is-not-control/">Language sensitivity is not control</a></li>
   </ul>
 
-  <h2>Off hours</h2>
-  <div class="ride"><video src="media/ride.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
-  <p>I ride a Triumph Bonneville T120 around Boston, and on clear nights I am out with a telescope. I speak three languages and am learning two more.</p>
+  <h2>Code</h2>
+  <ul>
+    <li class="proj"><a href="https://github.com/adeeb10abbas/steerable"><b>steerable</b></a> <span>matched language interventions for VLAs and world-action models on DROID and RoboTwin, with every rollout kept.</span></li>
+    <li class="proj"><a href="https://github.com/adeeb10abbas/BitWAM"><b>BitWAM</b></a> <span>1.58-bit vision-language-action policies with BitNet quantization.</span></li>
+    <li class="proj"><a href="https://github.com/adeeb10abbas/ros2-docker-dev"><b>ros2-docker-dev</b></a> <span>ROS 1 and 2 with GUI support in Docker, without the hassle.</span></li>
+  </ul>
 
-  <footer>Updated November 2026.</footer>
+  <h2>Elsewhere</h2>
+  <div class="wide"><video src="media/ride.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+  <p>Away from work I ride a Triumph Bonneville T120 around Boston, and on clear nights I set up a telescope. I speak three languages and am learning two more.</p>
+
+  <footer class="sans">Updated November 2026.</footer>
 </main>
 </body>
 </html>
