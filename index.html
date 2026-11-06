@@ -28,11 +28,23 @@
   <p>I build and study robot foundation policies at General Motors, and I am finishing a PhD at Northeastern's RIVeR Lab with Taşkın Padır. I live in Boston.</p>
   <p>Most of my current work starts from a simple question: if you tell a robot the same thing in two different ways, does it do the same thing? Often it does not. I am interested in measuring that gap carefully, in understanding where it comes from inside vision-language-action and world-action models, and in building policies that close it.</p>
   <p>Before GM I was an Applied Scientist at the RAI Institute, and I interned at Amazon Robotics and Toyota Research Institute. I studied computer engineering at Drexel.</p>
+  <p class="logos" aria-label="General Motors, RAI Institute, Amazon, Toyota Research Institute, Northeastern University, Drexel University">
+    <img src="logos/gm.svg" alt="General Motors" style="height:26px">
+    <img src="logos/rai.svg" alt="RAI Institute" style="height:23px">
+    <img src="logos/amazon.svg" alt="Amazon" style="height:21px">
+    <img src="logos/tri.svg" alt="Toyota Research Institute" style="height:34px">
+    <img src="logos/neu.svg" alt="Northeastern University" style="height:19px">
+    <img src="logos/drexel.png" alt="Drexel University" style="height:25px">
+  </p>
+  <figure>
+    <div class="wide"><video src="media/hug.mp4" poster="media/hug-poster.jpg" muted loop playsinline preload="metadata"></video></div>
+    <figcaption>A hug from a robot at Toyota Research Institute.</figcaption>
+  </figure>
 
   <h2>Research</h2>
   <ol>
     <li class="pub">
-      <div class="media"><video src="media/same-goal.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+      <div class="media"><video src="media/same-goal.mp4" poster="media/same-goal-poster.jpg" muted loop playsinline preload="metadata"></video></div>
       <div>
         <span class="t">Same Goal, Different Words: Spatial Instruction Sensitivity in World-Action Models</span>
         <span class="g">Three world-action models, 864 rollouts, one goal said three ways. Naming the reference object first costs about twelve points of success.</span>
@@ -41,7 +53,7 @@
       </div>
     </li>
     <li class="pub">
-      <div class="media"><video src="media/anytask.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+      <div class="media"><video src="media/anytask.mp4" poster="media/anytask-poster.jpg" muted loop playsinline preload="metadata"></video></div>
       <div>
         <span class="t">AnyTask: An Automated Task and Data Generation Framework for Advancing Sim-to-Real Policy Learning</span>
         <span class="g">Foundation models and GPU simulation generate manipulation tasks and data. Policies trained only on that data reach 44% success on real pick-and-place, drawer, and pushing tasks.</span>
@@ -50,7 +62,7 @@
       </div>
     </li>
     <li class="pub">
-      <div class="media"><video src="media/jacta.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+      <div class="media"><video src="media/jacta.mp4" poster="media/jacta-poster.jpg" muted loop playsinline preload="metadata"></video></div>
       <div>
         <span class="t">Jacta: A Versatile Planner for Learning Dexterous and Whole-Body Manipulation</span>
         <span class="g">A planner that writes its own demonstrations for dexterous and whole-body tasks, so reinforcement learning can learn things it otherwise cannot. The policies transfer to real robots.</span>
@@ -59,7 +71,7 @@
       </div>
     </li>
     <li class="pub">
-      <div class="media"><video src="media/skid.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+      <div class="media"><video src="media/skid.mp4" poster="media/skid-poster.jpg" muted loop playsinline preload="metadata"></video></div>
       <div>
         <span class="t">A Probabilistic Motion Model for Skid-Steer Wheeled Mobile Robot Navigation on Off-Road Terrains</span>
         <span class="g">A Gaussian-process motion model that predicts where a skid-steer robot will end up on unseen terrain, more accurately than the kinematic model.</span>
@@ -77,9 +89,10 @@
       </div>
     </li>
     <li class="pub">
+      <div class="media"><video src="media/radio.mp4" poster="media/radio-poster.jpg" muted loop playsinline preload="metadata"></video></div>
       <div>
         <span class="t">Radio Modulation Classification Using Deep Residual Neural Networks</span>
-        <span class="g">A residual network and data augmentation for classifying radio modulation schemes on RadioML.</span>
+        <span class="g">Turning raw I/Q samples into images for a residual network. Picking the right transform, the outer product, was worth up to ten points of accuracy on RadioML.</span>
         <span class="m">A. Abbas, V. Pano, G. Mainland, K. Dandekar. MILCOM 2022.<br>
         <a href="https://doi.org/10.1109/MILCOM55135.2022.10017640">doi</a></span>
       </div>
@@ -100,10 +113,22 @@
   </ul>
 
   <h2>Elsewhere</h2>
-  <div class="wide"><video src="media/ride.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
-  <p>Away from work I ride a Triumph Bonneville T120 around Boston, and on clear nights I set up a telescope. I speak three languages and am learning two more.</p>
+  <div class="wide"><video src="media/ride.mp4" poster="media/ride-poster.jpg" muted loop playsinline preload="metadata"></video></div>
+  <p>Away from work I ride a Triumph Bonneville T120 around Boston, mostly early, when the city is still quiet. On clear nights I set up a telescope. I speak three languages and am learning two more.</p>
 
   <footer class="sans">Updated November 2026.</footer>
 </main>
+  <script>
+    (function () {
+      var vids = document.querySelectorAll('video');
+      function play(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      if (!('IntersectionObserver' in window)) { vids.forEach(play); return; }
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { e.isIntersecting ? play(e.target) : e.target.pause(); });
+      }, { rootMargin: '200px 0px' });
+      vids.forEach(function (v) { io.observe(v); });
+      document.addEventListener('touchstart', function () { vids.forEach(function (v) { if (!v.paused) return; var r = v.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) play(v); }); }, { passive: true, once: true });
+    })();
+  </script>
 </body>
 </html>

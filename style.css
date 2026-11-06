@@ -32,6 +32,9 @@ a:hover { text-decoration-color: var(--accent); color: var(--accent); }
 .head { display: flex; gap: 1.25rem; align-items: flex-start; margin-bottom: 2.25rem; }
 .head img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex: none; margin-top: .2rem; }
 .sub { color: var(--muted); margin-bottom: .8rem; }
+.logos { display: flex; flex-wrap: wrap; gap: .9rem 1.5rem; align-items: center; margin: 1.4rem 0 1.6rem; }
+.logos img { filter: brightness(0) opacity(.42); }
+@media (prefers-color-scheme: dark) { .logos img { filter: brightness(0) invert(1) opacity(.5); } }
 .links { font-size: .9rem; }
 .links a { margin-right: 1.1rem; }
 ol, ul { padding: 0; margin: 0; list-style: none; }
