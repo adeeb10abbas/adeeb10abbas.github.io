@@ -33,8 +33,8 @@ a:hover { text-decoration-color: var(--accent); color: var(--accent); }
 .head img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; flex: none; margin-top: .2rem; }
 .sub { color: var(--muted); margin-bottom: .8rem; }
 .logos { display: grid; grid-template-columns: repeat(3, max-content); gap: 1.1rem 2.4rem; align-items: center; margin: 1.6rem 0 1.8rem; }
-.logos img { filter: brightness(0) opacity(.42); }
-@media (prefers-color-scheme: dark) { .logos img { filter: brightness(0) invert(1) opacity(.5); } }
+.logos img { display: block; }
+@media (prefers-color-scheme: dark) { .logos { background: #f7f5f0; padding: 1.1rem 1.4rem; border-radius: 8px; } }
 .links { font-size: .9rem; }
 .links a { margin-right: 1.1rem; }
 ol, ul { padding: 0; margin: 0; list-style: none; }
